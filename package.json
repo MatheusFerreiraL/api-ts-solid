@@ -9,7 +9,9 @@
     "build": "tsup src --out-dir build",
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix",
-    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -37,6 +39,8 @@
     "bcryptjs": "2.4.3",
     "dotenv": "16.4.0",
     "fastify": "4.25.2",
-    "zod": "3.22.4"
+    "zod": "3.22.4",
+    "vite-tsconfig-paths": "4.3.1",
+    "vitest": "1.2.2"
   }
 }
