@@ -1,4 +1,5 @@
-import { registerService } from '@/Services/RegisterService';
+import { UsersRepository } from '@/Repositories/UsersRepository';
+import { RegisterService } from '@/Services/RegisterService';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
@@ -12,7 +13,10 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
   const { name, email, password } = registerBodySchema.parse(request.body);
 
   try {
-    await registerService({ name, email, password });
+    const usersRepository = new UsersRepository();
+    const registerService = new RegisterService(usersRepository);
+
+    await registerService.executeRegister({ name, email, password });
   } catch (err) {
     return reply.status(409).send();
   }

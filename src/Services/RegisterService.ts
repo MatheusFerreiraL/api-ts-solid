@@ -1,23 +1,25 @@
-import { hash } from 'bcryptjs';
-import { prisma } from '@/Utils/Prisma';
 import { IRegister } from '@/Interfaces/IRegister';
+import { IUsersRepository } from '@/Interfaces/IUsersRepository';
+import { hash } from 'bcryptjs';
 
-export async function registerService({ name, email, password }: IRegister) {
-  const passwordHash: string = await hash(password, 6);
+export class RegisterService {
+  private usersRepository: IUsersRepository;
 
-  const userWithSameEmail = await prisma.user.findUnique({
-    where: {
-      email,
-    },
-  });
+  constructor(usersRepository: IUsersRepository) {
+    this.usersRepository = usersRepository;
+  }
 
-  if (userWithSameEmail) throw new Error('E-mail alredy in use!');
+  async executeRegister({ name, email, password }: IRegister) {
+    const passwordHash: string = await hash(password, 6);
 
-  await prisma.user.create({
-    data: {
+    const userWithSameEmail = await this.usersRepository.findByEmail(email);
+
+    if (userWithSameEmail) throw new Error('E-mail alredy in use!');
+
+    await this.usersRepository.create({
       name,
       email,
       password_hash: passwordHash,
-    },
-  });
+    });
+  }
 }
