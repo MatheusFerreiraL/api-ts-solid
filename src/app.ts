@@ -1,13 +1,7 @@
-import { PrismaClient } from '@prisma/client';
 import fastify from 'fastify';
+import { appRoutes } from './Http/Routes';
 
 export const app = fastify();
 
-const prisma = new PrismaClient();
-
-await prisma.user.create({
-  data: {
-    name: 'Marcela Ferraz',
-    email: 'mferraz@email.com',
-  },
-});
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+app.register(appRoutes);
