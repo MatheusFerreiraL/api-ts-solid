@@ -1,6 +1,5 @@
 import { UserAlredyExistError } from '@/Errors/UserAlredyExistError';
-import { UsersRepository } from '@/Repositories/UsersRepository';
-import { RegisterService } from '@/Services/RegisterService';
+import { makeRegisterService } from '@/Services/Factories/MakeRegisterService';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod';
 
@@ -14,8 +13,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
   const { name, email, password } = registerBodySchema.parse(request.body);
 
   try {
-    const usersRepository = new UsersRepository();
-    const registerService = new RegisterService(usersRepository);
+    const registerService = makeRegisterService();
 
     await registerService.execute({ name, email, password });
   } catch (err) {

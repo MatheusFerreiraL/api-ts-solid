@@ -4,7 +4,7 @@ import { IAuthenticateServiceRequest } from '@/Interfaces/IAuthenticateServiceRe
 import { UsersRepository } from '@/Repositories/UsersRepository';
 import { compare } from 'bcryptjs';
 
-export class AuthenticateUser {
+export class AuthenticateService {
   private usersRepository: UsersRepository;
 
   constructor(usersRepository: UsersRepository) {

@@ -1,16 +1,16 @@
 import { InvalidCredentialsError } from '@/Errors/InvalidCredentialsError';
-import { AuthenticateUser } from '@/Middlewares/AuthenticateUser';
+import { AuthenticateService } from '@/Services/AuthenticateService';
 import { hash } from 'bcryptjs';
 import { InMemoryUsersRepository } from 'test/InMemory/InMemoryUsersRepository';
 import { expect, describe, it, beforeEach } from 'vitest';
 
 let usersRepository: InMemoryUsersRepository;
-let sut: AuthenticateUser;
+let sut: AuthenticateService;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository();
-    sut = new AuthenticateUser(usersRepository);
+    sut = new AuthenticateService(usersRepository);
   });
 
   it('should be able to authenticate', async () => {
