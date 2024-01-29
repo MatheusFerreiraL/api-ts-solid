@@ -4,7 +4,7 @@ Gympass style APP
 
 ## RFs (requisitos funcionas)
 
-- [ ] Deve ser possível se cadastrar;
+- [✅] Deve ser possível se cadastrar;
 - [ ] Deve ser possível fazer login (se autenticar);
 - [ ] Deve ser possível obter o perfil de um usuário logado;
 - [ ] Deve ser possível obter o número de chack-ins realizados pelo usuário logado;

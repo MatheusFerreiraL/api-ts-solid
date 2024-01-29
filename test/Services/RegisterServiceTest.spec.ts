@@ -9,7 +9,7 @@ describe('Register Service', () => {
     const usersRepository = new InMemoryUsersRepository();
     const registerService = new RegisterService(usersRepository);
 
-    const { user } = await registerService.executeRegister({
+    const { user } = await registerService.execute({
       name: 'John Doe',
       email: 'jdoe@email.com',
       password: '123456',
@@ -22,7 +22,7 @@ describe('Register Service', () => {
     const usersRepository = new InMemoryUsersRepository();
     const registerService = new RegisterService(usersRepository);
 
-    const { user } = await registerService.executeRegister({
+    const { user } = await registerService.execute({
       name: 'John Doe',
       email: 'jdoe@email.com',
       password: '123456',
@@ -39,14 +39,14 @@ describe('Register Service', () => {
 
     const email = 'jdoe@email.com';
 
-    await registerService.executeRegister({
+    await registerService.execute({
       name: 'John Doe',
       email,
       password: '123456',
     });
 
     await expect(async () => {
-      await registerService.executeRegister({
+      await registerService.execute({
         name: 'John Doe',
         email,
         password: '123456',

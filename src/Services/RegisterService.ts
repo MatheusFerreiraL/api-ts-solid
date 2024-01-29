@@ -11,7 +11,7 @@ export class RegisterService {
     this.usersRepository = usersRepository;
   }
 
-  async executeRegister({ name, email, password }: IRegister): Promise<IRegisterServiceResponse> {
+  async execute({ name, email, password }: IRegister): Promise<IRegisterServiceResponse> {
     const passwordHash: string = await hash(password, 6);
 
     const userWithSameEmail = await this.usersRepository.findByEmail(email);

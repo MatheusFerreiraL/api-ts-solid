@@ -17,11 +17,11 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     const usersRepository = new UsersRepository();
     const registerService = new RegisterService(usersRepository);
 
-    await registerService.executeRegister({ name, email, password });
+    await registerService.execute({ name, email, password });
   } catch (err) {
     if (err instanceof UserAlredyExistError) return reply.status(409).send({ message: err.message });
 
-    return reply.status(500); // TODO: Need to send the correct error!
+    throw err;
   }
 
   return reply.status(201).send();
