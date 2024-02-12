@@ -1,8 +1,8 @@
 import { UserAlredyExistError } from '@/Errors/UserAlredyExistError';
 import { IRegister } from '@/Interfaces/IRegister';
+import { hash } from 'bcryptjs';
 import { IRegisterServiceResponse } from '@/Interfaces/IRegisterServiceResponse';
 import { IUsersRepository } from '@/Interfaces/IUsersRepository';
-import { hash } from 'bcryptjs';
 
 export class RegisterService {
   private usersRepository: IUsersRepository;

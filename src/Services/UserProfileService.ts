@@ -1,6 +1,6 @@
 import { ResourceNotFoundError } from '@/Errors/ResourceNotFoundError';
-import { IUserProfileServiceRequest } from '@/Interfaces/IUserProfileServiceRequest';
 import { UsersRepository } from '@/Repositories/UsersRepository';
+import { IUserProfileServiceRequest } from '@/Interfaces/IUserProfileServiceRequest';
 
 export class UserProfileService {
   private usersRepository: UsersRepository;

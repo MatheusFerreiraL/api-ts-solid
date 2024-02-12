@@ -1,8 +1,8 @@
 import { InvalidCredentialsError } from '@/Errors/InvalidCredentialsError';
-import { IAuthenticateServiceReply } from '@/Interfaces/IAuthenticateServiceReply';
-import { IAuthenticateServiceRequest } from '@/Interfaces/IAuthenticateServiceRequest';
 import { UsersRepository } from '@/Repositories/UsersRepository';
 import { compare } from 'bcryptjs';
+import { IAuthenticateServiceReply } from '@/Interfaces/IAuthenticateServiceReply';
+import { IAuthenticateServiceRequest } from '@/Interfaces/IAuthenticateServiceRequest';
 
 export class AuthenticateService {
   private usersRepository: UsersRepository;
