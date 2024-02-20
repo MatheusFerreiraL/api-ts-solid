@@ -12,6 +12,15 @@ export class CheckInsRepository implements ICheckInsRepository {
     return checkIn;
   }
 
+  async findManyByUserId(userId: string, page: number) {
+    const checkInsHistory = await prisma.checkIn.findMany({
+      where: {
+        user_id: userId,
+      },
+    });
+    return checkInsHistory;
+  }
+
   async findByUserIdOnDate(userId: string, date: Date) {
     const startOfTheDay = dayjs(date).startOf('date'); // retorna: 2024-02-11T00:00:00 (o inicio do dia)
     const endOfTheDay = dayjs(date).endOf('date'); // retorna: 2024-02-11T23:59:59 (o fim do dia)

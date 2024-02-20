@@ -1,9 +1,9 @@
 import { Prisma, CheckIn } from '@prisma/client';
 import dayjs from 'dayjs';
 import { randomUUID } from 'node:crypto';
-import { CheckInsRepository } from '@/repositories/check-ins-repository';
+import { ICheckInsRepository } from '@/interfaces/Irepositories/Icheck-ins-repository';
 
-export class InMemoryCheckInsRepository implements CheckInsRepository {
+export class InMemoryCheckInsRepository implements ICheckInsRepository {
   public items: CheckIn[] = [];
 
   async findById(id: string) {
