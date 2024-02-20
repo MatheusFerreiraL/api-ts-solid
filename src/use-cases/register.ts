@@ -5,7 +5,11 @@ import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-e
 import { hash } from 'bcryptjs';
 
 export class RegisterUseCase {
-  constructor(private usersRepository: UsersRepository) {}
+  private usersRepository: UsersRepository;
+
+  constructor(usersRepo: UsersRepository) {
+    this.usersRepository = usersRepo;
+  }
 
   async execute({ name, email, password }: IRegisterUseCaseRequest): Promise<IRegisterUseCaseReply> {
     const passwordHash = await hash(password, 6);

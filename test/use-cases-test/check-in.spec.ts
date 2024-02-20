@@ -1,6 +1,8 @@
 import { InMemoryCheckInsRepository } from '@/repositories/in-memory/in-memory-check-ins-repository';
 import { InMemoryGymsRepository } from '@/repositories/in-memory/in-memory-gyms-repository';
 import { CheckInUseCase } from '@/use-cases/check-in';
+import { MaxDistanceError } from '@/use-cases/errors/max-distance-error';
+import { MaxNumberOfCheckInsError } from '@/use-cases/errors/max-number-of-check-ins-error';
 import { Decimal } from '@prisma/client/runtime/library';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
@@ -9,7 +11,7 @@ let gymsRepository: InMemoryGymsRepository;
 let sut: CheckInUseCase;
 
 describe('Check In Use Case', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository();
     gymsRepository = new InMemoryGymsRepository();
     sut = new CheckInUseCase(checkInsRepository, gymsRepository);
@@ -20,6 +22,15 @@ describe('Check In Use Case', () => {
       description: '',
       latitude: new Decimal(-6.5753311),
       longitude: new Decimal(53.3238659),
+      phone: '',
+    });
+
+    await gymsRepository.create({
+      id: 'gym-01',
+      title: 'Frangolandia',
+      description: '',
+      latitude: -6.5753311,
+      longitude: 53.3238659,
       phone: '',
     });
 
@@ -57,7 +68,7 @@ describe('Check In Use Case', () => {
         userLatitude: -6.5753311,
         userLongitude: 53.3238659,
       })
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError);
   });
 
   it('should be able to check in more than once in different days', async () => {
@@ -96,6 +107,6 @@ describe('Check In Use Case', () => {
         userLatitude: -6.5753311,
         userLongitude: 53.3238659,
       })
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(MaxDistanceError);
   });
 });

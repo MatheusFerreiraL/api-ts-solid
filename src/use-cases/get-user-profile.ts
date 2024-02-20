@@ -4,7 +4,11 @@ import { UsersRepository } from '@/repositories/users-repository';
 import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-error';
 
 export class GetUserProfileUseCase {
-  constructor(private usersRepository: UsersRepository) {}
+  private usersRepository: UsersRepository;
+
+  constructor(usersRepo: UsersRepository) {
+    this.usersRepository = usersRepo;
+  }
 
   async execute({ userId }: IUserProfileUseCaseRequest): Promise<IUserProfileUseCaseReply> {
     const user = await this.usersRepository.findById(userId);

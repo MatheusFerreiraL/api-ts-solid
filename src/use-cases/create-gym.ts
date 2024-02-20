@@ -3,7 +3,11 @@ import { ICreateGymUseCaseReply } from '@/interfaces/Iuse-cases/Icreate-gym-use-
 import { ICreateGymUseCaseRequest } from '@/interfaces/Iuse-cases/Icreate-gym-use-case-request';
 
 export class CreateGymUseCase {
-  constructor(private gymsRepository: IGymsRepository) {}
+  private gymsRepository: IGymsRepository;
+
+  constructor(gymsRepo: IGymsRepository) {
+    this.gymsRepository = gymsRepo;
+  }
 
   async execute({
     title,
