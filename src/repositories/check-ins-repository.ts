@@ -17,6 +17,8 @@ export class CheckInsRepository implements ICheckInsRepository {
       where: {
         user_id: userId,
       },
+      take: 20,
+      skip: page * 20,
     });
     return checkInsHistory;
   }
@@ -37,5 +39,15 @@ export class CheckInsRepository implements ICheckInsRepository {
     if (!isOnSameDate) return null;
 
     return checkInOnSameDate;
+  }
+
+  async countByUserId(userId: string) {
+    const countOfCheckInsByUser = await prisma.checkIn.count({
+      where: {
+        user_id: userId,
+      },
+    });
+
+    return countOfCheckInsByUser;
   }
 }
