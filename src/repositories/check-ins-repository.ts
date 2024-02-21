@@ -4,6 +4,27 @@ import dayjs from 'dayjs';
 import { ICheckInsRepository } from '@/interfaces/Irepositories/Icheck-ins-repository';
 
 export class CheckInsRepository implements ICheckInsRepository {
+  // TODO: implementar metodo
+  async save(checkIn: {
+    id: string;
+    created_at: Date;
+    validated_at: Date | null;
+    user_id: string;
+    gym_id: string;
+  }): Promise<{ id: string; created_at: Date; validated_at: Date | null; user_id: string; gym_id: string }> {
+    console.log(checkIn);
+
+    throw new Error('Method not implemented.');
+  }
+
+  async findById(
+    id: string
+  ): Promise<{ id: string; created_at: Date; validated_at: Date | null; user_id: string; gym_id: string } | null> {
+    console.log(id);
+
+    throw new Error('Method not implemented.');
+  }
+
   async create(data: Prisma.CheckInUncheckedCreateInput) {
     const checkIn = await prisma.checkIn.create({
       data,

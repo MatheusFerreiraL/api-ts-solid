@@ -6,8 +6,8 @@ import { ICheckInsRepository } from '@/interfaces/Irepositories/Icheck-ins-repos
 export class InMemoryCheckInsRepository implements ICheckInsRepository {
   public items: CheckIn[] = [];
 
-  async findById(id: string) {
-    const checkIn = this.items.find((item) => item.id === id);
+  async findById(checkInId: string) {
+    const checkIn = this.items.find((item) => item.id === checkInId);
 
     if (!checkIn) {
       return null;
