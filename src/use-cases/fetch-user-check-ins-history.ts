@@ -1,5 +1,5 @@
-import { FetchUserCheckInsHistoryReply } from '@/interfaces/Iuse-cases/Ifetch-member-check-ins-history-reply';
-import { FetchUserCheckInsHistoryRequest } from '@/interfaces/Iuse-cases/Ifetch-member-check-ins-history-request';
+import { FetchUserCheckInsHistoryReply } from '@/interfaces/Iuse-cases/Ifetch-member-check-ins-history-use-case-reply';
+import { FetchUserCheckInsHistoryRequest } from '@/interfaces/Iuse-cases/Ifetch-member-check-ins-history-use-case-request';
 import { CheckInsRepository } from '@/repositories/check-ins-repository';
 
 export class FetchUserCheckInsHistoryUseCase {

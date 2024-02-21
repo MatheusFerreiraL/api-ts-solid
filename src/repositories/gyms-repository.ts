@@ -1,3 +1,4 @@
+import { FindManyNearbyParams } from '@/interfaces/Ifind-many-nearby-params';
 import { IGymsRepository } from '@/interfaces/Irepositories/Igyms-repository';
 import { prisma } from '@/utils/Prisma';
 import { Prisma } from '@prisma/client';
@@ -28,5 +29,21 @@ export class GymsRepository implements IGymsRepository {
       skip: page * 10,
     });
     return gym;
+  }
+
+  // TODO: implementar metodo!
+  findManyNearby(params: FindManyNearbyParams): Promise<
+    {
+      id: string;
+      title: string;
+      description: string | null;
+      phone: string | null;
+      latitude: Prisma.Decimal;
+      longitude: Prisma.Decimal;
+    }[]
+  > {
+    console.log(params);
+
+    throw new Error('Method not implemented.');
   }
 }

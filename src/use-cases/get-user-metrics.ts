@@ -1,5 +1,5 @@
-import { GetUserMetricsUseCaseReply } from '@/interfaces/Iuse-cases/Iget-user-metrics-reply';
-import { GetUserMetricsUseCaseRequest } from '@/interfaces/Iuse-cases/Iget-user-metrics-request';
+import { GetUserMetricsUseCaseReply } from '@/interfaces/Iuse-cases/Iget-user-metrics-use-case-reply';
+import { GetUserMetricsUseCaseRequest } from '@/interfaces/Iuse-cases/Iget-user-metrics-use-case-request';
 import { CheckInsRepository } from '@/repositories/check-ins-repository';
 
 export class GetUserMetricsUseCase {
