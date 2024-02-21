@@ -1,28 +1,25 @@
 import { prisma } from '@/utils/Prisma';
-import { Prisma } from '@prisma/client';
+import { CheckIn, Prisma } from '@prisma/client';
 import dayjs from 'dayjs';
 import { ICheckInsRepository } from '@/interfaces/Irepositories/Icheck-ins-repository';
 
 export class CheckInsRepository implements ICheckInsRepository {
-  // TODO: implementar metodo
-  async save(checkIn: {
-    id: string;
-    created_at: Date;
-    validated_at: Date | null;
-    user_id: string;
-    gym_id: string;
-  }): Promise<{ id: string; created_at: Date; validated_at: Date | null; user_id: string; gym_id: string }> {
-    console.log(checkIn);
-
-    throw new Error('Method not implemented.');
+  async save(data: CheckIn) {
+    const checkIn = await prisma.checkIn.update({
+      where: { id: data.id },
+      data,
+    });
+    return checkIn;
   }
 
-  async findById(
-    id: string
-  ): Promise<{ id: string; created_at: Date; validated_at: Date | null; user_id: string; gym_id: string } | null> {
-    console.log(id);
+  async findById(id: string) {
+    const checkIn = await prisma.checkIn.findUnique({
+      where: {
+        id,
+      },
+    });
 
-    throw new Error('Method not implemented.');
+    return checkIn;
   }
 
   async create(data: Prisma.CheckInUncheckedCreateInput) {
@@ -39,7 +36,7 @@ export class CheckInsRepository implements ICheckInsRepository {
         user_id: userId,
       },
       take: 20,
-      skip: page * 20,
+      skip: (page - 1) * 20,
     });
     return checkInsHistory;
   }
@@ -51,13 +48,12 @@ export class CheckInsRepository implements ICheckInsRepository {
     const checkInOnSameDate = await prisma.checkIn.findFirst({
       where: {
         user_id: userId,
+        created_at: {
+          gte: startOfTheDay.toDate(), // gte: grater than -> vai trazer os casos que a data for 'maior que'...
+          lte: endOfTheDay.toDate(), // lte: less than -> vai trazer os casos que a data for 'menor que'...
+        },
       },
     });
-
-    const checkInDate = dayjs(checkInOnSameDate?.created_at);
-    const isOnSameDate = checkInDate.isAfter(startOfTheDay) && checkInDate.isBefore(endOfTheDay);
-
-    if (!isOnSameDate) return null;
 
     return checkInOnSameDate;
   }
