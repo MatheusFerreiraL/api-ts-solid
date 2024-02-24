@@ -1,7 +1,7 @@
 import { FindManyNearbyParams } from '@/interfaces/Ifind-many-nearby-params';
 import { IGymsRepository } from '@/interfaces/Irepositories/Igyms-repository';
 import { prisma } from '@/utils/Prisma';
-import { Prisma } from '@prisma/client';
+import { Gym, Prisma } from '@prisma/client';
 
 export class GymsRepository implements IGymsRepository {
   async findById(id: string) {
@@ -31,19 +31,14 @@ export class GymsRepository implements IGymsRepository {
     return gym;
   }
 
-  // TODO: implementar metodo!
-  findManyNearby(params: FindManyNearbyParams): Promise<
-    {
-      id: string;
-      title: string;
-      description: string | null;
-      phone: string | null;
-      latitude: Prisma.Decimal;
-      longitude: Prisma.Decimal;
-    }[]
-  > {
-    console.log(params);
+  async findManyNearby(params: FindManyNearbyParams) {
+    // nesse caso é necessário informar o tipo para o prisma pois o 'raw' não consegue identificar sozinho
+    const gyms = await prisma.$queryRaw<Gym[]>`
+      SELECT * FROM GYMS
+      WHERE ( 6371 * acos( cos( radians(${params.latitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${params.longitude}) ) + sin( radians(${params.latitude}) ) * sin( radians( latitude ) ) ) ) <= 10
+    `;
+    // '<= 10', unidade de medida é em kms
 
-    throw new Error('Method not implemented.');
+    return gyms;
   }
 }
