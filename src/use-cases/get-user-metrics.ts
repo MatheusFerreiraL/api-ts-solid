@@ -1,6 +1,6 @@
 import { GetUserMetricsUseCaseReply } from '@/interfaces/Iuse-cases/Iget-user-metrics-use-case-reply';
 import { GetUserMetricsUseCaseRequest } from '@/interfaces/Iuse-cases/Iget-user-metrics-use-case-request';
-import { CheckInsRepository } from '@/repositories/check-ins-repository';
+import { CheckInsRepository } from '@/repositories/prisma/prisma-check-ins-repository';
 
 export class GetUserMetricsUseCase {
   private checkInsRepository: CheckInsRepository;

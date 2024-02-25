@@ -1,6 +1,6 @@
 import { FetchNearbyGymsReply } from '@/interfaces/Iuse-cases/Ifetch-nearby-gyms-use-case-reply';
 import { FetchNearbyGymsRequest } from '@/interfaces/Iuse-cases/Ifetch-nearby-gyms-use-case-request';
-import { GymsRepository } from '@/repositories/gyms-repository';
+import { GymsRepository } from '@/repositories/prisma/prisma-gyms-repository';
 
 export class FetchNearbyGymsUseCase {
   private gymsRepository: GymsRepository;

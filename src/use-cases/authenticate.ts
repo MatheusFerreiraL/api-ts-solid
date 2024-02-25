@@ -1,6 +1,6 @@
 import { IAuthenticateUseCaseReply } from '@/interfaces/Iuse-cases/Iauthenticate-use-case-reply';
 import { IAuthenticateUseCaseRequest } from '@/interfaces/Iuse-cases/Iauthenticate-use-case-request';
-import { UsersRepository } from '@/repositories/users-repository';
+import { UsersRepository } from '@/repositories/prisma/prisma-users-repository';
 import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-error';
 import { compare } from 'bcryptjs';
 

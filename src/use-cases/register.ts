@@ -1,6 +1,6 @@
 import { IRegisterUseCaseReply } from '@/interfaces/Iuse-cases/Iregister-use-case-reply';
 import { IRegisterUseCaseRequest } from '@/interfaces/Iuse-cases/Iregister-use-case-request';
-import { UsersRepository } from '@/repositories/users-repository';
+import { UsersRepository } from '@/repositories/prisma/prisma-users-repository';
 import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error';
 import { hash } from 'bcryptjs';
 

@@ -1,6 +1,6 @@
 import { FetchUserCheckInsHistoryReply } from '@/interfaces/Iuse-cases/Ifetch-member-check-ins-history-use-case-reply';
 import { FetchUserCheckInsHistoryRequest } from '@/interfaces/Iuse-cases/Ifetch-member-check-ins-history-use-case-request';
-import { CheckInsRepository } from '@/repositories/check-ins-repository';
+import { CheckInsRepository } from '@/repositories/prisma/prisma-check-ins-repository';
 
 export class FetchUserCheckInsHistoryUseCase {
   private checkInsRepository: CheckInsRepository;

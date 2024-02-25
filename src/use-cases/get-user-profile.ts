@@ -1,7 +1,7 @@
 import { IUserProfileUseCaseReply } from '@/interfaces/Iuse-cases/Iget-user-profile-use-case-reply';
 import { IUserProfileUseCaseRequest } from '@/interfaces/Iuse-cases/Iget-user-profile-use-case-request';
-import { UsersRepository } from '@/repositories/users-repository';
 import { ResourceNotFoundError } from '@/use-cases/errors/resource-not-found-error';
+import { UsersRepository } from '@/repositories/prisma/prisma-users-repository';
 
 export class GetUserProfileUseCase {
   private usersRepository: UsersRepository;
